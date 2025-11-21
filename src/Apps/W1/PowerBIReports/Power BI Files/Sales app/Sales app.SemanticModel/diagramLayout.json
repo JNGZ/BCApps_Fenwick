@@ -509,6 +509,26 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Lost Customer Month Range",
+          "nodeLineageTag": "7cbeb9b0-bea4-4c2b-a568-6c9e2026cc74",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Customer Ledger Entries",
+          "nodeLineageTag": "21fc1cfa-5e85-4760-9957-ff8f7231ef45",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
@@ -1883,7 +1903,35 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 762,
+            "y": 314
+          },
+          "nodeIndex": "Customer Ledger Entries",
+          "nodeLineageTag": "21fc1cfa-5e85-4760-9957-ff8f7231ef45",
+          "size": {
+            "height": 582,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1210,
+            "y": 270
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "11a4fdb3-5158-4100-8442-1a84223c4b82",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        }
+      ],
       "name": "Layout 1",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,
