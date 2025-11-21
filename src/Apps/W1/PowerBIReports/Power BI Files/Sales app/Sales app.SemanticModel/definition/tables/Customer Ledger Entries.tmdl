@@ -3,8 +3,8 @@ table 'Customer Ledger Entries'
 
 	column cleEntryNo
 		dataType: int64
-		displayFolder: _Customer Ledger Entries
 		formatString: 0
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 973a8225-c40d-4379-975a-ec0a3926750d
 		summarizeBy: sum
 		sourceColumn: cleEntryNo
@@ -14,6 +14,7 @@ table 'Customer Ledger Entries'
 	column cleDueDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Customer Ledger Entries
 		lineageTag: e7dd899c-9f46-46c8-9a70-3cd97dbe9ebd
 		summarizeBy: none
 		sourceColumn: cleDueDate
@@ -25,6 +26,7 @@ table 'Customer Ledger Entries'
 	column cleOpen
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 34d484d2-5aa6-48e5-b2e5-638991ee8c04
 		summarizeBy: none
 		sourceColumn: cleOpen
@@ -34,6 +36,7 @@ table 'Customer Ledger Entries'
 	column clePostingDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 9fc2a966-c78e-4252-a7b9-17b6b68f10a8
 		summarizeBy: none
 		sourceColumn: clePostingDate
@@ -45,6 +48,7 @@ table 'Customer Ledger Entries'
 	column cleDocumentDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 2df1d94d-49bd-42b8-8589-173e6b8ada46
 		summarizeBy: none
 		sourceColumn: cleDocumentDate
@@ -56,6 +60,7 @@ table 'Customer Ledger Entries'
 	column cleDimensionSetID
 		dataType: int64
 		formatString: 0
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 0d41fdcd-584d-4686-9271-0d8ea58f4549
 		summarizeBy: count
 		sourceColumn: cleDimensionSetID
@@ -65,6 +70,7 @@ table 'Customer Ledger Entries'
 	column cleClosedAtDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Customer Ledger Entries
 		lineageTag: bcbdc9f2-a6af-4ed9-8a60-f82cb33cdfe7
 		summarizeBy: none
 		sourceColumn: cleClosedAtDate
@@ -75,6 +81,7 @@ table 'Customer Ledger Entries'
 
 	column cleReasonCode
 		dataType: string
+		displayFolder: _Customer Ledger Entries
 		lineageTag: 73d7830b-d3d3-425e-b9d0-e5efdf08081e
 		summarizeBy: none
 		sourceColumn: cleReasonCode
