@@ -1,0 +1,231 @@
+table 'Customer Ledger Entries'
+	lineageTag: 21fc1cfa-5e85-4760-9957-ff8f7231ef45
+
+	column cleEntryNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 973a8225-c40d-4379-975a-ec0a3926750d
+		summarizeBy: sum
+		sourceColumn: cleEntryNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cleDueDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e7dd899c-9f46-46c8-9a70-3cd97dbe9ebd
+		summarizeBy: none
+		sourceColumn: cleDueDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cleOpen
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 34d484d2-5aa6-48e5-b2e5-638991ee8c04
+		summarizeBy: none
+		sourceColumn: cleOpen
+
+		annotation SummarizationSetBy = Automatic
+
+	column clePostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9fc2a966-c78e-4252-a7b9-17b6b68f10a8
+		summarizeBy: none
+		sourceColumn: clePostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cleDocumentDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2df1d94d-49bd-42b8-8589-173e6b8ada46
+		summarizeBy: none
+		sourceColumn: cleDocumentDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cleDimensionSetID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d41fdcd-584d-4686-9271-0d8ea58f4549
+		summarizeBy: count
+		sourceColumn: cleDimensionSetID
+
+		annotation SummarizationSetBy = Automatic
+
+	column cleClosedAtDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bcbdc9f2-a6af-4ed9-8a60-f82cb33cdfe7
+		summarizeBy: none
+		sourceColumn: cleClosedAtDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cleReasonCode
+		dataType: string
+		lineageTag: 73d7830b-d3d3-425e-b9d0-e5efdf08081e
+		summarizeBy: none
+		sourceColumn: cleReasonCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleEntryNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 126dabec-1d22-4d99-bc41-93852817b4c6
+		summarizeBy: sum
+		sourceColumn: dcleEntryNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dclePostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e90cf7a0-fd0a-483a-8213-d03a52d9eba7
+		summarizeBy: none
+		sourceColumn: dclePostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dcleLedgerEntryAmount
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 95bcdd30-33d4-4e5c-8678-a7d545c2a3c8
+		summarizeBy: none
+		sourceColumn: dcleLedgerEntryAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleEntryType
+		dataType: string
+		lineageTag: ca28a04b-6b49-4e51-8d91-e5e1fc9c7d54
+		summarizeBy: none
+		sourceColumn: dcleEntryType
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleDocumentType
+		dataType: string
+		lineageTag: c89499b4-e386-4bbc-a933-d4c3b9249222
+		summarizeBy: none
+		sourceColumn: dcleDocumentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleDocumentNo
+		dataType: string
+		lineageTag: fd004f21-a2ac-4bd8-8438-cdec17d24c7f
+		summarizeBy: none
+		sourceColumn: dcleDocumentNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleInitialEntryDueDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bc4a5c0e-e2d8-45ef-bd00-5e1218af6db2
+		summarizeBy: none
+		sourceColumn: dcleInitialEntryDueDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dcleAmountLCY
+		dataType: double
+		lineageTag: 94f4da17-3277-4b2e-b917-02fc88d04c25
+		summarizeBy: sum
+		sourceColumn: dcleAmountLCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dcleCustomerNo
+		dataType: string
+		lineageTag: 50cedb2d-7b90-46c6-886e-ab515e622144
+		summarizeBy: none
+		sourceColumn: dcleCustomerNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleApplicationNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 50ef5b73-039b-470a-aaf4-0e558fbfd053
+		summarizeBy: sum
+		sourceColumn: dcleApplicationNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dcleAppliedCustLedgerEntryNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b75fcd7-bb53-4e53-9ad5-1290fb392604
+		summarizeBy: sum
+		sourceColumn: dcleAppliedCustLedgerEntryNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column salesInvHeaderDocumentNo
+		dataType: string
+		lineageTag: 0efb2e75-ee73-4acd-91b2-3e833d499101
+		summarizeBy: none
+		sourceColumn: salesInvHeaderDocumentNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column salesInvHeaderPaymentTermsCode
+		dataType: string
+		lineageTag: f7ea14c6-56f1-48b0-b424-dd6a8b196543
+		summarizeBy: none
+		sourceColumn: salesInvHeaderPaymentTermsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column salesInvHeaderPmtDiscountDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 62399e4c-5426-4f96-a9c0-cb418e6da13f
+		summarizeBy: none
+		sourceColumn: salesInvHeaderPmtDiscountDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ETag
+		dataType: string
+		lineageTag: acf10efb-8566-45e8-82c1-2995db897d8b
+		summarizeBy: none
+		sourceColumn: ETag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Ledger Entries' = m
+		mode: import
+		queryGroup: 'Fact Tables'
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
+				    customerLedgerEntries_table = Source{[Name="customerLedgerEntries",Signature="table"]}[Data]
+				in
+				    customerLedgerEntries_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
