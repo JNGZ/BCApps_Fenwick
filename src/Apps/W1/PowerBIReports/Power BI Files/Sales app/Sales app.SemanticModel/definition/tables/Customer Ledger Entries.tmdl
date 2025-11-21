@@ -83,6 +83,7 @@ table 'Customer Ledger Entries'
 	column dcleEntryNo
 		dataType: int64
 		formatString: 0
+		displayFolder: _Detailed CLE
 		lineageTag: 126dabec-1d22-4d99-bc41-93852817b4c6
 		summarizeBy: sum
 		sourceColumn: dcleEntryNo
@@ -92,6 +93,7 @@ table 'Customer Ledger Entries'
 	column dclePostingDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Detailed CLE
 		lineageTag: e90cf7a0-fd0a-483a-8213-d03a52d9eba7
 		summarizeBy: none
 		sourceColumn: dclePostingDate
@@ -103,6 +105,7 @@ table 'Customer Ledger Entries'
 	column dcleLedgerEntryAmount
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: _Detailed CLE
 		lineageTag: 95bcdd30-33d4-4e5c-8678-a7d545c2a3c8
 		summarizeBy: none
 		sourceColumn: dcleLedgerEntryAmount
@@ -111,6 +114,7 @@ table 'Customer Ledger Entries'
 
 	column dcleEntryType
 		dataType: string
+		displayFolder: _Detailed CLE
 		lineageTag: ca28a04b-6b49-4e51-8d91-e5e1fc9c7d54
 		summarizeBy: none
 		sourceColumn: dcleEntryType
@@ -119,6 +123,7 @@ table 'Customer Ledger Entries'
 
 	column dcleDocumentType
 		dataType: string
+		displayFolder: _Detailed CLE
 		lineageTag: c89499b4-e386-4bbc-a933-d4c3b9249222
 		summarizeBy: none
 		sourceColumn: dcleDocumentType
@@ -127,6 +132,7 @@ table 'Customer Ledger Entries'
 
 	column dcleDocumentNo
 		dataType: string
+		displayFolder: _Detailed CLE
 		lineageTag: fd004f21-a2ac-4bd8-8438-cdec17d24c7f
 		summarizeBy: none
 		sourceColumn: dcleDocumentNo
@@ -136,6 +142,7 @@ table 'Customer Ledger Entries'
 	column dcleInitialEntryDueDate
 		dataType: dateTime
 		formatString: Long Date
+		displayFolder: _Detailed CLE
 		lineageTag: bc4a5c0e-e2d8-45ef-bd00-5e1218af6db2
 		summarizeBy: none
 		sourceColumn: dcleInitialEntryDueDate
@@ -146,6 +153,7 @@ table 'Customer Ledger Entries'
 
 	column dcleAmountLCY
 		dataType: double
+		displayFolder: _Detailed CLE
 		lineageTag: 94f4da17-3277-4b2e-b917-02fc88d04c25
 		summarizeBy: sum
 		sourceColumn: dcleAmountLCY
@@ -156,6 +164,7 @@ table 'Customer Ledger Entries'
 
 	column dcleCustomerNo
 		dataType: string
+		displayFolder: _Detailed CLE
 		lineageTag: 50cedb2d-7b90-46c6-886e-ab515e622144
 		summarizeBy: none
 		sourceColumn: dcleCustomerNo
@@ -165,6 +174,7 @@ table 'Customer Ledger Entries'
 	column dcleApplicationNo
 		dataType: int64
 		formatString: 0
+		displayFolder: _Detailed CLE
 		lineageTag: 50ef5b73-039b-470a-aaf4-0e558fbfd053
 		summarizeBy: sum
 		sourceColumn: dcleApplicationNo
@@ -174,6 +184,7 @@ table 'Customer Ledger Entries'
 	column dcleAppliedCustLedgerEntryNo
 		dataType: int64
 		formatString: 0
+		displayFolder: _Detailed CLE
 		lineageTag: 1b75fcd7-bb53-4e53-9ad5-1290fb392604
 		summarizeBy: sum
 		sourceColumn: dcleAppliedCustLedgerEntryNo
