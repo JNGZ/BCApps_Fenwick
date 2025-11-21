@@ -300,3 +300,7 @@ relationship b5168601-daaf-4677-2930-956783246776
 	fromColumn: 'Customer Ledger Entries'.cleDueDate
 	toColumn: Date.Date
 
+relationship fa7ff6e3-4dbe-8339-64d2-ec8868d3371e
+	fromColumn: 'Customer Ledger Entries'.dcleCustomerNo
+	toColumn: Customer.'Customer No.'
+
