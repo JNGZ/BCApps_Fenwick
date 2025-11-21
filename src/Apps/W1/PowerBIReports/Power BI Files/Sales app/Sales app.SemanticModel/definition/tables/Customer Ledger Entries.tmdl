@@ -3,6 +3,7 @@ table 'Customer Ledger Entries'
 
 	column cleEntryNo
 		dataType: int64
+		displayFolder: _Customer Ledger Entries
 		formatString: 0
 		lineageTag: 973a8225-c40d-4379-975a-ec0a3926750d
 		summarizeBy: sum
