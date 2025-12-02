@@ -204,10 +204,12 @@ table 'Localized Labels'
 
 	measure 'Back button' = 0
 		formatString: 0
+		isHidden
 		lineageTag: 8a192dfe-ff11-4ade-afb9-acacc9cb7c64
 
 	measure 'Monthly Recurring Revenue, Monthly Recurring Cost, Monthly Net Profit, Active Customers, Total Contract Value, Change in Monthly Recurring Revenue' = 0
 		formatString: 0
+		isHidden
 		lineageTag: 673f244c-6171-47fd-88fe-8d25ff9fa65c
 
 	measure 'Churn Analysis' = 0
