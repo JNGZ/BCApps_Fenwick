@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 7098.9117864980617,
+        "x": 5951.0026465536948,
         "y": 0
       },
       "nodes": [
@@ -419,8 +419,8 @@
     {
       "ordinal": 1,
       "scrollPosition": {
-        "x": 3.3823996877778315,
-        "y": 307.79835075508788
+        "x": 0,
+        "y": 0
       },
       "nodes": [
         {
@@ -879,88 +879,8 @@
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
       "tablesLocked": false
-    },
-    {
-      "ordinal": 5,
-      "scrollPosition": {
-        "x": 0,
-        "y": 0
-      },
-      "nodes": [
-        {
-          "location": {
-            "x": 334.20512673662097,
-            "y": 332.73720525559219
-          },
-          "nodeIndex": "Analysis Date",
-          "nodeLineageTag": "f142381c-cc7e-4ac9-bd00-1cdcb9e5fed4",
-          "size": {
-            "height": 152,
-            "width": 234
-          },
-          "zIndex": 1
-        },
-        {
-          "location": {
-            "x": 618.906190014267,
-            "y": 363.886910189608
-          },
-          "nodeIndex": "Customer Contract Line",
-          "nodeLineageTag": "540f4568-d4e5-47d8-8c9c-1c4a21f3b091",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 4
-        },
-        {
-          "location": {
-            "x": 550.304860530581,
-            "y": -50
-          },
-          "nodeIndex": "Vendor Contract Line",
-          "nodeLineageTag": "99943954-cca4-451c-9f37-de72dc3ba6fe",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 2
-        },
-        {
-          "location": {
-            "x": 921,
-            "y": 217
-          },
-          "nodeIndex": "Date",
-          "nodeLineageTag": "43a65c75-84cf-4e19-b893-90aa5fbee72b",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 3
-        },
-        {
-          "location": {
-            "x": 3,
-            "y": 256
-          },
-          "nodeIndex": "Customer Contract",
-          "nodeLineageTag": "b748c247-65fd-49d8-93a8-6221ddd88c2e",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        }
-      ],
-      "name": "Layout 1",
-      "zoomValue": 100,
-      "pinKeyFieldsToTop": false,
-      "showExtraHeaderInfo": false,
-      "hideKeyFieldsWhenCollapsed": false,
-      "tablesLocked": false
     }
   ],
-  "selectedDiagram": "Layout 1",
+  "selectedDiagram": "Customer Contract Line",
   "defaultDiagram": "All tables"
 }
