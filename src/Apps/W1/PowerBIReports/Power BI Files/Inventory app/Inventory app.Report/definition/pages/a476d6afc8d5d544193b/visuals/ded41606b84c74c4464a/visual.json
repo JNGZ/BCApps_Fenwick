@@ -10,31 +10,11 @@
     "tabOrder": 7002
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "hundredPercentStackedAreaChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Date"
-                        }
-                      },
-                      "Hierarchy": "Fiscal Year-Month"
-                    }
-                  },
-                  "Level": "Fiscal Year"
-                }
-              },
-              "queryRef": "Date.Fiscal Year-Month.Fiscal Year",
-              "nativeQueryRef": "Fiscal Year-Month Fiscal Year",
-              "active": true
-            },
             {
               "field": {
                 "HierarchyLevel": {
@@ -53,7 +33,25 @@
               },
               "queryRef": "Date.Fiscal Year-Month.Fiscal Month Year",
               "nativeQueryRef": "Fiscal Year-Month Fiscal Month Year",
-              "active": false
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Class"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Class",
+              "nativeQueryRef": "ABC Class"
             }
           ]
         },
@@ -90,13 +88,99 @@
             }
           }
         }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "concatenateLabels": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "areaMatchStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "lineChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'smooth'"
+                }
+              }
+            },
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "27D"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "4cf4e2635f0b492e4c4b",
+        "name": "f63b87558d4a3e330f61",
         "field": {
           "Measure": {
             "Expression": {
@@ -110,26 +194,21 @@
         "type": "Advanced"
       },
       {
-        "name": "b6ca5b25c00fd4acb512",
+        "name": "a53cb7bdbdcdb4a93921",
         "field": {
-          "HierarchyLevel": {
+          "Column": {
             "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Date"
-                  }
-                },
-                "Hierarchy": "Fiscal Year-Month"
+              "SourceRef": {
+                "Entity": "ABC Classification"
               }
             },
-            "Level": "Fiscal Year"
+            "Property": "ABC Class"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "37ff4dc04851d208daec",
+        "name": "6d6b3be6a0b45d6d90d8",
         "field": {
           "HierarchyLevel": {
             "Expression": {

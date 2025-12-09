@@ -5,7 +5,7 @@ table 'ABC Classification'
 			
 			VAR SalesByProduct =
 			    ADDCOLUMNS (
-			         SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description]),
+			         SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description], 'Item'[Item Category Code]),
 			        "@ProdSales", [_Sales Amount ABC]
 			
 			    )
