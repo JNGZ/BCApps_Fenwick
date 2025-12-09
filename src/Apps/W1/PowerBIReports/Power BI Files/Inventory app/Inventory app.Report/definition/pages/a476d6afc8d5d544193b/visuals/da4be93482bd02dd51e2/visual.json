@@ -1,0 +1,196 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "da4be93482bd02dd51e2",
+  "position": {
+    "x": 23.375760929717767,
+    "y": 360.55340343110129,
+    "z": 5000,
+    "height": 196.92307692307693,
+    "width": 640.35417819590486,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Class"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Class",
+              "nativeQueryRef": "ABC Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "Lower Boundary"
+                }
+              },
+              "queryRef": "ABC Classification.Lower Boundary",
+              "nativeQueryRef": "Lower Boundary"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "Upper Boundary"
+                }
+              },
+              "queryRef": "ABC Classification.Upper Boundary",
+              "nativeQueryRef": "Upper Boundary"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Sales Amount"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Sales Amount",
+              "nativeQueryRef": "ABC Sales Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Percent of Sales"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Percent of Sales",
+              "nativeQueryRef": "ABC Percent of Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC No. of Products"
+                }
+              },
+              "queryRef": "ABC Classification.ABC No. of Products",
+              "nativeQueryRef": "ABC No. of Items",
+              "displayName": "ABC No. of Items"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "655d05fd333826a81a97",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "Upper Boundary"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d562a08bec223f5c4ef0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Class"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "df296e98dde9d7cc76fb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Sales Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c9c7a0509ce17bcd53bd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Percent of Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6b80d3d6bc4d2c0dc9b5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "Lower Boundary"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dbb383e672cf4408c253",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC No. of Products"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

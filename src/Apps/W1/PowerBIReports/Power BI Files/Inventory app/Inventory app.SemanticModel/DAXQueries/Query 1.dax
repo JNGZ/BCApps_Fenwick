@@ -1,0 +1,62 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+DEFINE
+VAR __DS0FilterTable = 
+		TREATAS({"F 2024"}, 'Date'[Fiscal Year])
+
+VAR SalesByProduct =
+    ADDCOLUMNS (
+         SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.]),
+        "@ProdSales", 
+            var prodsales = CALCULATE(SUM('Item Ledger Entries'[Sales Amt. (Actual)]))
+            RETURN IF(prodsales = 0, BLANK(), prodsales)
+
+    )
+VAR AllSales =
+    CALCULATE (
+        SUM('Item Ledger Entries'[Sales Amt. (Actual)]),
+        ALLSELECTED ( 'Item' )
+    )
+VAR CumulatedPctByProduct =
+    ADDCOLUMNS (
+        SalesByProduct,
+        "@CumulatedPct",
+        VAR CurrentSalesAmt = [@ProdSales]
+        VAR CumulatedSales =
+            FILTER (
+                SalesByProduct,
+                [@ProdSales] >= CurrentSalesAmt
+            )
+        VAR CumulatedSalesAmount =
+            SUMX (
+                CumulatedSales,
+                [@ProdSales]
+            )
+        RETURN
+            DIVIDE (
+                CumulatedSalesAmount,
+                AllSales
+            )
+    )
+VAR ProductsInClass =
+    FILTER (
+        CROSSJOIN (
+            CumulatedPctByProduct,
+            'ABC Classification'
+        ),
+        AND (
+            [@CumulatedPct] > 'ABC Classification'[Lower Boundary],
+            [@CumulatedPct] <= 'ABC Classification'[Upper Boundary]
+        )
+    )
+VAR Result =
+    CALCULATE (             -- The pattern is the same for every measure, just
+       SUM('Item Ledger Entries'[Sales Amt. (Actual)]),     -- change this measure reference for other measures
+        KEEPFILTERS ( ProductsInClass ),
+        KEEPFILTERS('Date')
+    )
+
+// Select "Run" to try this sample DAX query.
+EVALUATE
+    ProductsInClass ORDER BY [@CumulatedPct] DESC
+

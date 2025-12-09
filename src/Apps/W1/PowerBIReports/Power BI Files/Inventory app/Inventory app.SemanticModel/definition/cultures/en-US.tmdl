@@ -62917,6 +62917,27 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated"
+			    },
+			    "abc_classification.abc_no__of_products": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ABC Classification",
+			          "ConceptualProperty": "ABC No. of Products"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ABC No. of Items": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

@@ -1,0 +1,14 @@
+DEFINE
+
+var ProdSales =
+    ADDCOLUMNS (
+        SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.]),
+        "@Sales", [_Sales Amount ABC]
+    )
+var ProdSalesFiltered = 
+	FILTER(
+		ProdSales,
+		[@Sales] > 0
+	)
+EVALUATE
+ProdSalesFiltered
