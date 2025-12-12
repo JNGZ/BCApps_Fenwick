@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "028b6041fb4bbdf3b1e3",
   "position": {
-    "x": 23.375760929717767,
-    "y": 568.81018262313228,
-    "z": 7003,
-    "height": 134.58771444382955,
-    "width": 1227.5816270060875,
-    "tabOrder": 7003
+    "x": 651.16419911968592,
+    "y": 387.15476872830305,
+    "z": 5000,
+    "height": 306.53443931348477,
+    "width": 605.0954394540754,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "treemap",
@@ -23,11 +23,11 @@
                       "Entity": "Item"
                     }
                   },
-                  "Property": "Item No."
+                  "Property": "Item No. & Description"
                 }
               },
-              "queryRef": "Item.Item No.",
-              "nativeQueryRef": "Item No."
+              "queryRef": "Item.Item No. & Description",
+              "nativeQueryRef": "Item No. & Description"
             }
           ]
         },
@@ -47,6 +47,24 @@
               "queryRef": "ABC Classification.ABC Class",
               "nativeQueryRef": "ABC Class",
               "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Percent of Sales"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Percent of Sales",
+              "nativeQueryRef": "ABC Percent of Sales"
             }
           ]
         },
@@ -154,7 +172,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[Temp Title] ABC Sales Amount by Item'"
                 }
               }
             }
@@ -179,21 +204,21 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d854d85ef5c45fa36d43",
+        "name": "5c5b28d94cd5631e453f",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "ABC Classification"
+                "Entity": "Item"
               }
             },
-            "Property": "ABC Sales Amount"
+            "Property": "Item No. & Description"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical"
       },
       {
-        "name": "76bad979f5a22644d6b5",
+        "name": "a27a2012c25201101502",
         "field": {
           "Column": {
             "Expression": {
@@ -207,18 +232,32 @@
         "type": "Categorical"
       },
       {
-        "name": "eb8b2120b55d2230de1e",
+        "name": "60fee7f88e08d2ec8bff",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Item"
+                "Entity": "ABC Classification"
               }
             },
-            "Property": "Item No."
+            "Property": "ABC Percent of Sales"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
+      },
+      {
+        "name": "db34081b6e67802d5f5e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Sales Amount"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

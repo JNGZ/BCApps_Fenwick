@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1537cfc5da2803027652",
   "position": {
-    "x": 677.8970669618152,
-    "y": 359.84504703929167,
-    "z": 6000,
-    "height": 197.63143331488658,
-    "width": 573.06032097399009,
-    "tabOrder": 6000
+    "x": 332.22663220392138,
+    "y": 248.06255204559463,
+    "z": 4000,
+    "height": 197.56410395059856,
+    "width": 293.24537402532792,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "barChart",
@@ -17,18 +17,63 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Item"
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Item Category"
+                        }
+                      },
+                      "Hierarchy": "Item Category Code Hierarchy"
                     }
                   },
-                  "Property": "Item Category Code"
+                  "Level": "Item Category Code Level 1"
                 }
               },
-              "queryRef": "Item.Item Category Code",
-              "nativeQueryRef": "Item Category Code1",
+              "queryRef": "Item Category.Item Category Code Hierarchy.Item Category Code Level 1",
+              "nativeQueryRef": "Item Category Code Hierarchy Item Category Code Level 1",
               "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Item Category"
+                        }
+                      },
+                      "Hierarchy": "Item Category Code Hierarchy"
+                    }
+                  },
+                  "Level": "Item Category Code Level 2"
+                }
+              },
+              "queryRef": "Item Category.Item Category Code Hierarchy.Item Category Code Level 2",
+              "nativeQueryRef": "Item Category Code Hierarchy Item Category Code Level 2",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Item Category"
+                        }
+                      },
+                      "Hierarchy": "Item Category Code Hierarchy"
+                    }
+                  },
+                  "Level": "Item Category Code Level 3"
+                }
+              },
+              "queryRef": "Item Category.Item Category Code Hierarchy.Item Category Code Level 3",
+              "nativeQueryRef": "Item Category Code Hierarchy Item Category Code Level 3",
+              "active": false
             }
           ]
         },
@@ -47,6 +92,38 @@
               },
               "queryRef": "ABC Classification.ABC Class",
               "nativeQueryRef": "ABC Class"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC Percent of Sales"
+                }
+              },
+              "queryRef": "ABC Classification.ABC Percent of Sales",
+              "nativeQueryRef": "ABC Percent of Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ABC Classification"
+                    }
+                  },
+                  "Property": "ABC No. of Products"
+                }
+              },
+              "queryRef": "ABC Classification.ABC No. of Products",
+              "nativeQueryRef": "ABC No. of Products"
             }
           ]
         },
@@ -140,26 +217,84 @@
           }
         }
       ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[Temp Title] ABC Sales Amount by Item Category'"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "4a82cef1d56663930744",
+        "name": "7f02844f8f1cd7cf7b23",
         "field": {
-          "Measure": {
+          "HierarchyLevel": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Item Category"
+                  }
+                },
+                "Hierarchy": "Item Category Code Hierarchy"
               }
             },
-            "Property": "ABC Sales Amount"
+            "Level": "Item Category Code Level 1"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical"
       },
       {
-        "name": "dac94e34c4394580420b",
+        "name": "01419bee443efc14d350",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Item Category"
+                  }
+                },
+                "Hierarchy": "Item Category Code Hierarchy"
+              }
+            },
+            "Level": "Item Category Code Level 2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2b38def7a7784ec9c77e",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Item Category"
+                  }
+                },
+                "Hierarchy": "Item Category Code Hierarchy"
+              }
+            },
+            "Level": "Item Category Code Level 3"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "503f9b2db64b8c740deb",
         "field": {
           "Column": {
             "Expression": {
@@ -173,18 +308,46 @@
         "type": "Categorical"
       },
       {
-        "name": "15bcf1d781235091f836",
+        "name": "d1ab8ef68e882d18c7d9",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Item"
+                "Entity": "ABC Classification"
               }
             },
-            "Property": "Item Category Code"
+            "Property": "ABC Percent of Sales"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
+      },
+      {
+        "name": "dc89eb92942a2e0cf403",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC No. of Products"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d15f0ae2414ed7e3f2f2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Sales Amount"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

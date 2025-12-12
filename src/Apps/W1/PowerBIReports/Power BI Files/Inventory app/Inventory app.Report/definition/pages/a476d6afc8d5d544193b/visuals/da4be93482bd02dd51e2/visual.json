@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "da4be93482bd02dd51e2",
   "position": {
-    "x": 23.375760929717767,
-    "y": 360.55340343110129,
-    "z": 5000,
-    "height": 196.92307692307693,
-    "width": 640.35417819590486,
-    "tabOrder": 5000
+    "x": 24.806255204559463,
+    "y": 456.25790822671871,
+    "z": 3000,
+    "height": 237.43129981506914,
+    "width": 600.66575102468983,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -103,26 +103,101 @@
           ]
         }
       }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#b3d8dd'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#f1c8bf'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#FFFFFF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "ABC Classification.ABC Sales Amount"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[Temp Title] ABC Class Details'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "655d05fd333826a81a97",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "Upper Boundary"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d562a08bec223f5c4ef0",
+        "name": "d235818a58361f1d04e0",
         "field": {
           "Column": {
             "Expression": {
@@ -136,35 +211,7 @@
         "type": "Categorical"
       },
       {
-        "name": "df296e98dde9d7cc76fb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c9c7a0509ce17bcd53bd",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Percent of Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6b80d3d6bc4d2c0dc9b5",
+        "name": "8cb984785393d5a1bc60",
         "field": {
           "Column": {
             "Expression": {
@@ -178,7 +225,49 @@
         "type": "Advanced"
       },
       {
-        "name": "dbb383e672cf4408c253",
+        "name": "319e402bdd3e7d6096f9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "Upper Boundary"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "df72acc125de8bbbbd85",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Sales Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2597066223daab9e842a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Percent of Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "691419d30e1a5fef181f",
         "field": {
           "Measure": {
             "Expression": {

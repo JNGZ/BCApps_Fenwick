@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ded41606b84c74c4464a",
   "position": {
-    "x": 677.18871057000558,
-    "y": 120.42058660763698,
-    "z": 7002,
-    "height": 221.00719424460434,
-    "width": 573.7686773657997,
-    "tabOrder": 7002
+    "x": 652.050136805563,
+    "y": 62.015638011398657,
+    "z": 1000,
+    "height": 306.53443931348477,
+    "width": 604.20950176819838,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "hundredPercentStackedAreaChart",
@@ -28,12 +28,32 @@
                       "Hierarchy": "Fiscal Year-Month"
                     }
                   },
+                  "Level": "Fiscal Year"
+                }
+              },
+              "queryRef": "Date.Fiscal Year-Month.Fiscal Year",
+              "nativeQueryRef": "Fiscal Year-Month Fiscal Year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Date"
+                        }
+                      },
+                      "Hierarchy": "Fiscal Year-Month"
+                    }
+                  },
                   "Level": "Fiscal Month Year"
                 }
               },
               "queryRef": "Date.Fiscal Year-Month.Fiscal Month Year",
               "nativeQueryRef": "Fiscal Year-Month Fiscal Month Year",
-              "active": true
+              "active": false
             }
           ]
         },
@@ -175,40 +195,46 @@
           }
         }
       ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[Temp Title] ABC Sales Amount over Time'"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "f63b87558d4a3e330f61",
+        "name": "8c03673e88887fd61e0f",
         "field": {
-          "Measure": {
+          "HierarchyLevel": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date"
+                  }
+                },
+                "Hierarchy": "Fiscal Year-Month"
               }
             },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a53cb7bdbdcdb4a93921",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Class"
+            "Level": "Fiscal Year"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "6d6b3be6a0b45d6d90d8",
+        "name": "8e835534d87d81bd00a0",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -225,6 +251,34 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "311484921913febd07b3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Class"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "09544264118c326eaaa7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Sales Amount"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
