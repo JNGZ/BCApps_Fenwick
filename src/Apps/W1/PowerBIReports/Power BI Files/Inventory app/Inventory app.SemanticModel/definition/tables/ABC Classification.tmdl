@@ -58,17 +58,17 @@ table 'ABC Classification'
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
 
-	measure 'ABC No. of Products' = ```
+	measure 'No. of Items' = ```
 			
 			
-			var ProdSales =
+			var ItemSales =
 			    ADDCOLUMNS (
 			        SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description]),
 			        "@Sales", [_Sales Amount ABC]
 			    )
-			var ProdSalesFiltered = 
+			var ItemSalesFiltered = 
 				FILTER(
-					ProdSales,
+					ItemSales,
 					[@Sales] > 0
 				)
 			VAR AllSales =
@@ -76,15 +76,15 @@ table 'ABC Classification'
 			        [_Sales Amount ABC],
 			        ALLSELECTED ( 'Item' )
 			    )
-			VAR ProdSalesPerc =
+			VAR ItemSalesPerc =
 			    ADDCOLUMNS (
-			        ProdSalesFiltered,
+			        ItemSalesFiltered,
 			        "@AggSales%",
 			        VAR CurrentSalesAmt = [@Sales]
 			        VAR CumulatedSales =
 			            SUMX (
 			                FILTER (
-			                    ProdSales,
+			                    ItemSales,
 			                    [@Sales] >= CurrentSalesAmt
 			                ),
 			                [@Sales]
@@ -95,10 +95,10 @@ table 'ABC Classification'
 			                AllSales
 			            )
 			    )
-			VAR ProductsInClass =
+			VAR ItemsInClass =
 			    FILTER (
 			        CROSSJOIN (
-			            ProdSalesPerc,
+			            ItemSalesPerc,
 			            'ABC Classification'
 			        ),
 			        AND (
@@ -109,7 +109,7 @@ table 'ABC Classification'
 			VAR Result =
 			    CALCULATE (
 			        COUNTROWS ( 'Item' ),
-			        KEEPFILTERS ( ProductsInClass )
+			        KEEPFILTERS ( ItemsInClass )
 			    )
 			RETURN
 			    Result

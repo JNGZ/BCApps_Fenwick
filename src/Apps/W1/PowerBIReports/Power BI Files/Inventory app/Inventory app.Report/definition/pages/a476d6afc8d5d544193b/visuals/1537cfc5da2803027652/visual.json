@@ -119,11 +119,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC No. of Products"
+                  "Property": "No. of Items"
                 }
               },
               "queryRef": "ABC Classification.ABC No. of Products",
-              "nativeQueryRef": "ABC No. of Products"
+              "nativeQueryRef": "No. of Items"
             }
           ]
         },
@@ -330,7 +330,7 @@
                 "Entity": "ABC Classification"
               }
             },
-            "Property": "ABC No. of Products"
+            "Property": "No. of Items"
           }
         },
         "type": "Advanced"

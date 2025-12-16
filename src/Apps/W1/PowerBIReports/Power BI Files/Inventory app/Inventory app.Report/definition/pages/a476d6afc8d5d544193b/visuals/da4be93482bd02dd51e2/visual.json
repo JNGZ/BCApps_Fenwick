@@ -93,7 +93,7 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC No. of Products"
+                  "Property": "No. of Items"
                 }
               },
               "queryRef": "ABC Classification.ABC No. of Products",
@@ -275,7 +275,7 @@
                 "Entity": "ABC Classification"
               }
             },
-            "Property": "ABC No. of Products"
+            "Property": "No. of Items"
           }
         },
         "type": "Advanced"
