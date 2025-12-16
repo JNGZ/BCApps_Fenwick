@@ -53,10 +53,8 @@ table 'ABC Classification'
 			    )
 			RETURN
 			    IF(Result = 0, BLANK(), Result)
-		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		formatString: #,0.00
 		lineageTag: 1a2887f9-6ab2-489f-824d-ef6f260f60cd
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
 
 	measure 'No. of Items' = ```
 			

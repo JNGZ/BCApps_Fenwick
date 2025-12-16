@@ -160,11 +160,9 @@ table 'Item Ledger Entries'
 			)
 			
 			```
-		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		formatString: #,0.00
 		displayFolder: _Item Ledger Entry Measures
 		lineageTag: f7b7197d-d2bc-423e-8a6c-bd844dd9a16d
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
 
 	column 'Source No. (Customer)'
 		dataType: string
