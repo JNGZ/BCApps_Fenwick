@@ -183,6 +183,22 @@ pageextension 36960 "Sales & Marketing Manager RC" extends "Sales & Marketing Ma
                     RunObject = page "Sales by Projects";
                     Tooltip = 'Open the Power BI Report that breaks down sales performance by project, including sales metrics across customer, item, resources and general ledger accounts.';
                 }
+                action("ABC Analysis (Power BI)")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'ABC Analysis (Power BI)';
+                    Image = "PowerBI";
+                    RunObject = page "ABC Analysis";
+                    Tooltip = 'Open the Power BI Report that performs an ABC analysis of your sales data, categorizing customers based on their contribution to total sales.';
+                }
+                action("Customer Retention (Power BI)")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Customer Retention (Power BI)';
+                    Image = "PowerBI";
+                    RunObject = page "Customer Retention";
+                    Tooltip = 'Open the Power BI Report that analyzes customer retention, providing insights into repeat purchase behavior, customer loyalty, and trends in customer churn over time.';
+                }
             }
         }
     }

@@ -154,6 +154,8 @@ permissionset 36955 "Power BI Embedded - Objects"
         page "Vendor Quality Analysis" = X,
         page "Purchase Return Overview" = X,
         page "Key Purchase Influencers" = X,
-        page "Purchase Quote Overview" = X;
+        page "Purchase Quote Overview" = X,
+        page "ABC Analysis" = X,
+        page "Customer Retention" = X;
 }
 
