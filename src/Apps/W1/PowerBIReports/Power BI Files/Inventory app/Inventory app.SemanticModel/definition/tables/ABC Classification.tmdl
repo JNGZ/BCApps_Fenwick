@@ -6,12 +6,12 @@ table 'ABC Classification'
 			VAR SalesByProduct =
 			    ADDCOLUMNS (
 			         SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description], 'Item'[Item Category Code]),
-			        "@ProdSales", [_Sales Amount ABC]
+			        "@ProdSales", [Sales Amount]
 			
 			    )
 			VAR AllSales =
 			    CALCULATE (
-			        [_Sales Amount ABC],
+			        [Sales Amount],
 			        ALLSELECTED ( 'Item' )
 			    )
 			VAR CumulatedPctByProduct =
@@ -48,7 +48,7 @@ table 'ABC Classification'
 			    )
 			VAR Result =
 			    CALCULATE (             -- The pattern is the same for every measure, just
-			       [_Sales Amount ABC],     -- change this measure reference for other measures
+			       [Sales Amount],     -- change this measure reference for other measures
 			        KEEPFILTERS ( ProductsInClass )
 			    )
 			RETURN
@@ -64,7 +64,7 @@ table 'ABC Classification'
 			var ItemSales =
 			    ADDCOLUMNS (
 			        SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description]),
-			        "@Sales", [_Sales Amount ABC]
+			        "@Sales", [Sales Amount]
 			    )
 			var ItemSalesFiltered = 
 				FILTER(
@@ -73,7 +73,7 @@ table 'ABC Classification'
 				)
 			VAR AllSales =
 			    CALCULATE (
-			        [_Sales Amount ABC],
+			        [Sales Amount],
 			        ALLSELECTED ( 'Item' )
 			    )
 			VAR ItemSalesPerc =
@@ -173,17 +173,11 @@ table 'ABC Classification'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure '_Sales Amount ABC' = CALCULATE(SUM('Item Ledger Entries'[Sales Amt. (Actual)]), 'Item Ledger Entries'[Entry Type] = "Sale")
-		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
-		lineageTag: f7b7197d-d2bc-423e-8a6c-bd844dd9a16d
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
-
 	measure 'ABC Percent of Sales' =
 			
 			VAR AllSales =
 			    CALCULATE (
-			        [_Sales Amount ABC],
+			        [Sales Amount],
 			        ALLSELECTED ( 'Item' )
 			    )
 			RETURN DIVIDE('ABC Classification'[ABC Sales Amount], AllSales)
