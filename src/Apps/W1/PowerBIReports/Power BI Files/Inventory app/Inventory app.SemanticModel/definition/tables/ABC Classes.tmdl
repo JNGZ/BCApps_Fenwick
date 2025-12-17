@@ -69,9 +69,10 @@ table 'ABC Classes'
 		source =
 				let
 				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,#"ABC ANALYSIS", []),
-				    TableData = Source{[Name="abcAnalysisSetups",Signature="table"]}[Data]
+				    TableData = Source{[Name="abcAnalysisSetups",Signature="table"]}[Data],
+				    #"Divided Column" = Table.TransformColumns(TableData, {{"categoryA", each _ / 100, type number},{"categoryB", each _ / 100, type number},{"categoryC", each _ / 100, type number}})
 				in
-				    TableData
+				    #"Divided Column"
 
 	changedProperty = IsHidden
 

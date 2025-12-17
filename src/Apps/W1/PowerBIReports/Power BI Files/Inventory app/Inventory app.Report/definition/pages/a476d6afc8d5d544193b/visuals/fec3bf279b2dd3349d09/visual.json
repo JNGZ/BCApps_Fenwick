@@ -42,11 +42,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Percent of Sales"
+                  "Property": "Percent of Sales Amount"
                 }
               },
               "queryRef": "ABC Classification.ABC Percent of Sales",
-              "nativeQueryRef": "ABC Percent of Sales"
+              "nativeQueryRef": "Percent of Sales Amount"
             }
           ]
         },
@@ -60,11 +60,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Amount"
+                  "Property": "Sales Amount (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Amount",
-              "nativeQueryRef": "ABC Sales Amount"
+              "nativeQueryRef": "Sales Amount (ABC)"
             }
           ]
         }
@@ -109,7 +109,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount by ABC Class'"
+                  "Value": "'[Temp Title] Sales Amount by Class'"
                 }
               }
             }
@@ -117,51 +117,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "654e44a635492afc365f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Class"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "43ee930aba2a071f170c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Percent of Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "98a9553787ff33defdda",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

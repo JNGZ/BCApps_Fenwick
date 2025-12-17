@@ -62922,7 +62922,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "ABC Classification",
-			          "ConceptualProperty": "No. of Items"
+			          "ConceptualProperty": "No. of Items in Class"
 			        }
 			      },
 			      "State": "Generated",

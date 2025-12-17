@@ -85,50 +85,24 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Amount"
+                  "Property": "Sales Amount (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Amount",
-              "nativeQueryRef": "ABC Sales Amount"
+              "nativeQueryRef": "Sales Amount (ABC)"
             }
           ]
         }
       }
     },
     "objects": {
-      "legend": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "seriesLabels": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -178,6 +152,13 @@
                   "Value": "'solid'"
                 }
               }
+            },
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -194,6 +175,32 @@
             }
           }
         }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -203,7 +210,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount over Time'"
+                  "Value": "'[Temp Title] Sales Amount over Time'"
                 }
               }
             }
@@ -211,75 +218,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8c03673e88887fd61e0f",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Date"
-                  }
-                },
-                "Hierarchy": "Fiscal Year-Month"
-              }
-            },
-            "Level": "Fiscal Year"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8e835534d87d81bd00a0",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Date"
-                  }
-                },
-                "Hierarchy": "Fiscal Year-Month"
-              }
-            },
-            "Level": "Fiscal Month Year"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "311484921913febd07b3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Class"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "09544264118c326eaaa7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,7 +1,7 @@
 table 'ABC Classification'
 	lineageTag: 8ffd963d-31f3-42e9-9ae6-0eee8bcff7b6
 
-	measure 'ABC Sales Amount' = ```
+	measure 'Sales Amount (ABC)' = ```
 			
 			VAR SalesByItem =
 			    ADDCOLUMNS (
@@ -65,9 +65,10 @@ table 'ABC Classification'
 			
 			```
 		formatString: #,0.00
+		displayFolder: _ABC Classification Measures
 		lineageTag: 1a2887f9-6ab2-489f-824d-ef6f260f60cd
 
-	measure 'No. of Items' = ```
+	measure 'No. of Items in Class' = ```
 			
 			
 			var ItemSales =
@@ -124,9 +125,10 @@ table 'ABC Classification'
 			    Result
 			```
 		formatString: 0
+		displayFolder: _ABC Classification Measures
 		lineageTag: eedc67f5-deca-40fd-a96e-d66453c7fe0c
 
-	measure 'ABC Sales Quantity' =
+	measure 'Sales Quantity (ABC)' =
 			
 			VAR SalesByItem =
 			    ADDCOLUMNS (
@@ -187,19 +189,20 @@ table 'ABC Classification'
 			        BLANK (),
 			        Result
 			    )
+		formatString: #,0.00
+		displayFolder: _ABC Classification Measures
 		lineageTag: e0eaae18-d899-4dcb-ae1a-ecc3685ace3c
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'ABC Percent of Sales' =
+	measure 'Percent of Sales Amount' =
 			
 			VAR AllSales =
 			    CALCULATE (
 			        [Sales Amount],
 			        ALLSELECTED ( 'Item' )
 			    )
-			RETURN DIVIDE('ABC Classification'[ABC Sales Amount], AllSales)
+			RETURN DIVIDE('ABC Classification'[Sales Amount (ABC)], AllSales)
 		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: _ABC Classification Measures
 		lineageTag: 05184584-b383-40c7-8379-f6f809c060e6
 
 	column 'ABC Class'
@@ -211,6 +214,7 @@ table 'ABC Classification'
 		annotation SummarizationSetBy = Automatic
 
 	column 'Lower Boundary'
+		isHidden
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: f68b219d-cb06-49f1-a7cd-51e23ce9b50c
 		summarizeBy: sum
@@ -220,11 +224,20 @@ table 'ABC Classification'
 		annotation SummarizationSetBy = Automatic
 
 	column 'Upper Boundary'
+		isHidden
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 1e51068d-54eb-4528-af26-a433acf45bf8
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: [Upper Boundary]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Class Boundaries' =
+			
+			'ABC Classification'[ABC Class] & " " & "(" & FORMAT('ABC Classification'[Lower Boundary],"0%") & " - " & FORMAT('ABC Classification'[Upper Boundary], "0%") & ")"
+		lineageTag: d0140c2a-a8b2-43e1-8690-25ee8b88a51d
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -240,9 +253,9 @@ table 'ABC Classification'
 				    MAX ( 'ABC Classes'[categoryC] )
 				RETURN
 				    UNION (
-				        ROW ( "ABC Class", "A", "Lower Boundary", 0, "Upper Boundary", DIVIDE(A,100) ),
-				        ROW ( "ABC Class", "B", "Lower Boundary", DIVIDE(A,100), "Upper Boundary", DIVIDE(A + B,100) ),
-				        ROW ( "ABC Class", "C", "Lower Boundary", DIVIDE(A + B,100), "Upper Boundary", 1 )
+				        ROW ( "ABC Class", "A", "Lower Boundary", 0, "Upper Boundary", A ),
+				        ROW ( "ABC Class", "B", "Lower Boundary", A, "Upper Boundary", A + B ),
+				        ROW ( "ABC Class", "C", "Lower Boundary", A + B, "Upper Boundary", 1 )
 				    )
 
 	annotation PBI_Id = 0caf2083755a4793bdd5aaa3409ddb44

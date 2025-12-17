@@ -60,11 +60,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Percent of Sales"
+                  "Property": "Percent of Sales Amount"
                 }
               },
               "queryRef": "ABC Classification.ABC Percent of Sales",
-              "nativeQueryRef": "ABC Percent of Sales"
+              "nativeQueryRef": "Percent of Sales Amount"
             }
           ]
         },
@@ -78,11 +78,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Amount"
+                  "Property": "Sales Amount (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Amount",
-              "nativeQueryRef": "ABC Sales Amount"
+              "nativeQueryRef": "Sales Amount (ABC)"
             }
           ]
         }
@@ -97,7 +97,7 @@
                     "Entity": "ABC Classification"
                   }
                 },
-                "Property": "ABC Sales Amount"
+                "Property": "Sales Amount (ABC)"
               }
             },
             "direction": "Descending"
@@ -118,7 +118,21 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TopRight'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
                 }
               }
             }
@@ -138,26 +152,13 @@
           }
         }
       ],
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "categoryLabels": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -200,65 +201,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5c5b28d94cd5631e453f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Item"
-              }
-            },
-            "Property": "Item No. & Description"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a27a2012c25201101502",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Class"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "60fee7f88e08d2ec8bff",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Percent of Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "db34081b6e67802d5f5e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

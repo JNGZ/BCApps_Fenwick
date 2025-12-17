@@ -105,11 +105,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Percent of Sales"
+                  "Property": "Percent of Sales Amount"
                 }
               },
               "queryRef": "ABC Classification.ABC Percent of Sales",
-              "nativeQueryRef": "ABC Percent of Sales"
+              "nativeQueryRef": "Percent of Sales Amount"
             },
             {
               "field": {
@@ -119,11 +119,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "No. of Items"
+                  "Property": "No. of Items in Class"
                 }
               },
               "queryRef": "ABC Classification.ABC No. of Products",
-              "nativeQueryRef": "No. of Items"
+              "nativeQueryRef": "No. of Items in Class"
             }
           ]
         },
@@ -137,11 +137,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Amount"
+                  "Property": "Sales Amount (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Amount",
-              "nativeQueryRef": "ABC Sales Amount"
+              "nativeQueryRef": "Sales Amount (ABC)"
             }
           ]
         }
@@ -156,7 +156,7 @@
                     "Entity": "ABC Classification"
                   }
                 },
-                "Property": "ABC Sales Amount"
+                "Property": "Sales Amount (ABC)"
               }
             },
             "direction": "Descending"
@@ -225,7 +225,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount by Item Category'"
+                  "Value": "'[Temp Title] Sales Amount by Item Category'"
                 }
               }
             }
@@ -233,122 +233,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "7f02844f8f1cd7cf7b23",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Item Category"
-                  }
-                },
-                "Hierarchy": "Item Category Code Hierarchy"
-              }
-            },
-            "Level": "Item Category Code Level 1"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "01419bee443efc14d350",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Item Category"
-                  }
-                },
-                "Hierarchy": "Item Category Code Hierarchy"
-              }
-            },
-            "Level": "Item Category Code Level 2"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2b38def7a7784ec9c77e",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Item Category"
-                  }
-                },
-                "Hierarchy": "Item Category Code Hierarchy"
-              }
-            },
-            "Level": "Item Category Code Level 3"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "503f9b2db64b8c740deb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Class"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d1ab8ef68e882d18c7d9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Percent of Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "dc89eb92942a2e0cf403",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "No. of Items"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d15f0ae2414ed7e3f2f2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ABC Classification"
-              }
-            },
-            "Property": "ABC Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

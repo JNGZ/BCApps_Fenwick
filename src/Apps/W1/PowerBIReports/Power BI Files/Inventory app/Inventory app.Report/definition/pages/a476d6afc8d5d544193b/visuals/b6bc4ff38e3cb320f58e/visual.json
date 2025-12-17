@@ -23,11 +23,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Amount"
+                  "Property": "Sales Amount (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Amount",
-              "nativeQueryRef": "ABC Sales Amount"
+              "nativeQueryRef": "Sales Amount (ABC)"
             },
             {
               "field": {
@@ -37,11 +37,11 @@
                       "Entity": "ABC Classification"
                     }
                   },
-                  "Property": "ABC Sales Quantity"
+                  "Property": "Sales Quantity (ABC)"
                 }
               },
               "queryRef": "ABC Classification.ABC Sales Quantity",
-              "nativeQueryRef": "ABC Sales Quantity"
+              "nativeQueryRef": "Sales Quantity (ABC)"
             }
           ]
         }
@@ -56,7 +56,7 @@
                     "Entity": "ABC Classification"
                   }
                 },
-                "Property": "ABC Sales Amount"
+                "Property": "Sales Amount (ABC)"
               }
             },
             "direction": "Descending"
