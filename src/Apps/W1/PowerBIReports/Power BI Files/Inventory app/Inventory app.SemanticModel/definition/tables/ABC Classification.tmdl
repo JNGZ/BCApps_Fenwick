@@ -1,44 +1,49 @@
 table 'ABC Classification'
 	lineageTag: 8ffd963d-31f3-42e9-9ae6-0eee8bcff7b6
 
-	measure 'ABC Sales Amount' =
+	measure 'ABC Sales Amount' = ```
 			
-			VAR SalesByProduct =
+			VAR SalesByItem =
 			    ADDCOLUMNS (
-			         SELECTCOLUMNS(ALLSELECTED('Item'),'Item'[Item No.], 'Item'[Item Description], 'Item'[Item No. & Description], 'Item'[Item Category Code]),
-			        "@ProdSales", [Sales Amount]
-			
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'Item' ),
+			            'Item'[Item No.],
+			            'Item'[Item Description],
+			            'Item'[Item No. & Description],
+			            'Item'[Item Category Code]
+			        ),
+			        "@ItemSales", [Sales Amount]
 			    )
 			VAR AllSales =
 			    CALCULATE (
 			        [Sales Amount],
 			        ALLSELECTED ( 'Item' )
 			    )
-			VAR CumulatedPctByProduct =
+			VAR CumulatedPctByItem =
 			    ADDCOLUMNS (
-			        SalesByProduct,
+			        SalesByItem,
 			        "@CumulatedPct",
-			        VAR CurrentSalesAmt = [@ProdSales]
-			        VAR CumulatedSales =
-			            FILTER (
-			                SalesByProduct,
-			                [@ProdSales] >= CurrentSalesAmt
-			            )
-			        VAR CumulatedSalesAmount =
-			            SUMX (
-			                CumulatedSales,
-			                [@ProdSales]
-			            )
-			        RETURN
-			            DIVIDE (
-			                CumulatedSalesAmount,
-			                AllSales
-			            )
+			            VAR CurrentSalesAmt = [@ItemSales]
+			            VAR CumulatedSales =
+			                FILTER (
+			                    SalesByItem,
+			                    [@ItemSales] >= CurrentSalesAmt
+			                )
+			            VAR CumulatedSalesAmount =
+			                SUMX (
+			                    CumulatedSales,
+			                    [@ItemSales]
+			                )
+			            RETURN
+			                DIVIDE (
+			                    CumulatedSalesAmount,
+			                    AllSales
+			                )
 			    )
 			VAR ProductsInClass =
 			    FILTER (
 			        CROSSJOIN (
-			            CumulatedPctByProduct,
+			            CumulatedPctByItem,
 			            'ABC Classification'
 			        ),
 			        AND (
@@ -47,12 +52,18 @@ table 'ABC Classification'
 			        )
 			    )
 			VAR Result =
-			    CALCULATE (             -- The pattern is the same for every measure, just
-			       [Sales Amount],     -- change this measure reference for other measures
+			    CALCULATE (
+			        [Sales Amount],
 			        KEEPFILTERS ( ProductsInClass )
 			    )
 			RETURN
-			    IF(Result = 0, BLANK(), Result)
+			    IF (
+			        Result = 0,
+			        BLANK (),
+			        Result
+			    )
+			
+			```
 		formatString: #,0.00
 		lineageTag: 1a2887f9-6ab2-489f-824d-ef6f260f60cd
 
@@ -117,42 +128,47 @@ table 'ABC Classification'
 
 	measure 'ABC Sales Quantity' =
 			
-			VAR SalesByProduct =
+			VAR SalesByItem =
 			    ADDCOLUMNS (
-			        ALLSELECTED ( 'Item' ),
-			        "@ProdSales", CALCULATE(SUM('Item Ledger Entries'[invoicedQuantity]))
-			
+			        SELECTCOLUMNS (
+			            ALLSELECTED ( 'Item' ),
+			            'Item'[Item No.],
+			            'Item'[Item Description],
+			            'Item'[Item No. & Description],
+			            'Item'[Item Category Code]
+			        ),
+			        "@ItemSales", [Sales Quantity]
 			    )
 			VAR AllSales =
 			    CALCULATE (
-			        SUM('Item Ledger Entries'[invoicedQuantity]),
+			        [Sales Quantity],
 			        ALLSELECTED ( 'Item' )
 			    )
-			VAR CumulatedPctByProduct =
+			VAR CumulatedPctByItem =
 			    ADDCOLUMNS (
-			        SalesByProduct,
+			        SalesByItem,
 			        "@CumulatedPct",
-			        VAR CurrentSalesAmt = [@ProdSales]
-			        VAR CumulatedSales =
-			            FILTER (
-			                SalesByProduct,
-			                [@ProdSales] >= CurrentSalesAmt
-			            )
-			        VAR CumulatedSalesAmount =
-			            SUMX (
-			                CumulatedSales,
-			                [@ProdSales]
-			            )
-			        RETURN
-			            DIVIDE (
-			                CumulatedSalesAmount,
-			                AllSales
-			            )
+			            VAR CurrentSalesQty = [@ItemSales]
+			            VAR CumulatedSales =
+			                FILTER (
+			                    SalesByItem,
+			                    [@ItemSales] >= CurrentSalesQty
+			                )
+			            VAR CumulatedSalesQuantity =
+			                SUMX (
+			                    CumulatedSales,
+			                    [@ItemSales]
+			                )
+			            RETURN
+			                DIVIDE (
+			                    CumulatedSalesQuantity,
+			                    AllSales
+			                )
 			    )
 			VAR ProductsInClass =
 			    FILTER (
 			        CROSSJOIN (
-			            CumulatedPctByProduct,
+			            CumulatedPctByItem,
 			            'ABC Classification'
 			        ),
 			        AND (
@@ -161,12 +177,16 @@ table 'ABC Classification'
 			        )
 			    )
 			VAR Result =
-			    CALCULATE (             -- The pattern is the same for every measure, just
-			       SUM('Item Ledger Entries'[invoicedQuantity]),     -- change this measure reference for other measures
+			    CALCULATE (
+			        [Sales Quantity],
 			        KEEPFILTERS ( ProductsInClass )
 			    )
 			RETURN
-			    Result
+			    IF (
+			        Result = 0,
+			        BLANK (),
+			        Result
+			    )
 		lineageTag: e0eaae18-d899-4dcb-ae1a-ecc3685ace3c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
