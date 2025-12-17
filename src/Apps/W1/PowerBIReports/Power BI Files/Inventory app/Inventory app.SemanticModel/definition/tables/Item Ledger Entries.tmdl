@@ -164,6 +164,18 @@ table 'Item Ledger Entries'
 		displayFolder: _Item Ledger Entry Measures
 		lineageTag: f7b7197d-d2bc-423e-8a6c-bd844dd9a16d
 
+	measure 'Sales Quantity' = ```
+			
+			CALCULATE (
+			    SUM ( 'Item Ledger Entries'[Qty.] ),
+			    'Item Ledger Entries'[Entry Type] = "Sale"
+			)
+			
+			```
+		lineageTag: 89e29479-b576-414a-a9ca-1fb2c4625da4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Source No. (Customer)'
 		dataType: string
 		isHidden
