@@ -1,37 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "028b6041fb4bbdf3b1e3",
+  "name": "c645d949153d97af65a0",
   "position": {
     "x": 650.79491178949615,
-    "y": 61.904881853147195,
-    "z": 4000,
-    "height": 306.34979993993358,
-    "width": 605.55672889681171,
-    "tabOrder": 3000
+    "y": 386.50868541644468,
+    "z": 8000,
+    "height": 307.14345227138415,
+    "width": 604.76307656536108,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "treemap",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Details": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Item"
-                    }
-                  },
-                  "Property": "Item No. & Description"
-                }
-              },
-              "queryRef": "Item.Item No. & Description",
-              "nativeQueryRef": "Item No. & Description"
-            }
-          ]
-        },
-        "Group": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -45,13 +27,22 @@
                 }
               },
               "queryRef": "ABC Classification.ABC Class",
-              "nativeQueryRef": "ABC Class",
-              "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
+              "nativeQueryRef": "ABC Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Item"
+                    }
+                  },
+                  "Property": "Item No. & Description"
+                }
+              },
+              "queryRef": "Item.Item No. & Description",
+              "nativeQueryRef": "Item No. & Description"
+            },
             {
               "field": {
                 "Measure": {
@@ -63,13 +54,9 @@
                   "Property": "Percent of Sales Amount"
                 }
               },
-              "queryRef": "ABC Classification.ABC Percent of Sales",
+              "queryRef": "ABC Classification.Percent of Sales Amount",
               "nativeQueryRef": "Percent of Sales Amount"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
+            },
             {
               "field": {
                 "Measure": {
@@ -81,7 +68,7 @@
                   "Property": "Sales Amount (ABC)"
                 }
               },
-              "queryRef": "ABC Classification.ABC Sales Amount",
+              "queryRef": "ABC Classification.Sales Amount (ABC)",
               "nativeQueryRef": "Sales Amount (ABC)"
             }
           ]
@@ -97,13 +84,12 @@
                     "Entity": "ABC Classification"
                   }
                 },
-                "Property": "Sales Amount (ABC)"
+                "Property": "Percent of Sales Amount"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
@@ -112,56 +98,84 @@
           "properties": {}
         }
       ],
-      "legend": [
+      "columnWidth": [
         {
           "properties": {
-            "show": {
+            "value": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'TopRight'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
+                  "Value": "228.1110350533741D"
                 }
               }
             }
+          },
+          "selector": {
+            "metadata": "Item.Item No. & Description"
           }
         }
       ],
-      "layout": [
+      "columnFormatting": [
         {
           "properties": {
-            "tilingMethod": {
-              "expr": {
-                "Literal": {
-                  "Value": "'binary'"
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#b3d8dd'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#f1c8bf'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#FFFFFF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
                 }
               }
             }
-          }
-        }
-      ],
-      "categoryLabels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
+          },
+          "selector": {
+            "metadata": "ABC Classification.Sales Amount (ABC)"
           }
         }
       ]
@@ -180,7 +194,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount by Item'"
+                  "Value": "'[Temp Title] ABC Sales Amount by Item Details'"
                 }
               }
             }
