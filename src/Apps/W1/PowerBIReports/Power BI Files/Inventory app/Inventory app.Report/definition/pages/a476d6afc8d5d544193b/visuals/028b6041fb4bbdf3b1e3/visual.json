@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount by Item'"
+                  "Value": "'[Temp Title] Sales Amount by Item'"
                 }
               }
             }

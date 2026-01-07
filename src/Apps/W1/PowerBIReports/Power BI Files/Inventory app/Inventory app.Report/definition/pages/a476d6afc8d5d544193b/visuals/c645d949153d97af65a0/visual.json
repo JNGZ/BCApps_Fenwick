@@ -194,7 +194,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'[Temp Title] ABC Sales Amount by Item Details'"
+                  "Value": "'[Temp Title] Sales Amount by Item Details'"
                 }
               }
             }
@@ -215,5 +215,65 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "416b9ecb6d8a7a622894",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "ABC Class"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a6116a92005195e09076",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Item"
+              }
+            },
+            "Property": "Item No. & Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4efdec51320dcc3e5d02",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "Percent of Sales Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8d6ce438178d031032e5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ABC Classification"
+              }
+            },
+            "Property": "Sales Amount (ABC)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
