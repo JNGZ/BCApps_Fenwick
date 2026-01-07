@@ -95,7 +95,7 @@
             "webUrl": {
               "expr": {
                 "Literal": {
-                  "Value": "'https://learn.microsoft.com/dynamics365/business-central/srb/analytics/subscription-powerbi-overview'"
+                  "Value": "'https://learn.microsoft.com/dynamics365/business-central/SRB/analytics/subscription-powerbi-billing-schedule'"
                 }
               }
             },
