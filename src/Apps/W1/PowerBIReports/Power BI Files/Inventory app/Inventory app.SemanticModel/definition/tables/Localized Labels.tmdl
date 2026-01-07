@@ -390,6 +390,24 @@ table 'Localized Labels'
 		isHidden
 		lineageTag: fa23f2ae-1811-4423-9ecb-ebbcf0bf50c0
 
+	measure 'ABC Analysis' = 0
+		isHidden
+
+	measure 'Sales Amount by Class' = 0
+		isHidden
+
+	measure 'Sales Amount by Item Category' = 0
+		isHidden
+
+	measure 'ABC Class Details' = 0
+		isHidden
+
+	measure 'Sales Amount by Item' = 0
+		isHidden
+
+	measure 'Sales Amount by Item Details' = 0
+		isHidden
+
 	column unused
 		isHidden
 		displayFolder: unused

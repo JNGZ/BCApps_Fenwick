@@ -71,8 +71,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'[Temp Title] ABC Analysis'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Translated Localized Labels"
+                    }
+                  },
+                  "Property": "ABC Analysis Label"
                 }
               }
             }

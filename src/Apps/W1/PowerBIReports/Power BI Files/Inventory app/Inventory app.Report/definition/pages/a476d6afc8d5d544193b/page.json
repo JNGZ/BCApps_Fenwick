@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "a476d6afc8d5d544193b",
-  "displayName": "[Temp Title] ABC Analysis",
+  "displayName": "ABC Analysis",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,

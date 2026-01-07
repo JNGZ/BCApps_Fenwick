@@ -224,8 +224,13 @@
           "properties": {
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'[Temp Title] Sales Amount by Item Category'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Translated Localized Labels"
+                    }
+                  },
+                  "Property": "Sales Amount by Item Category Label"
                 }
               }
             }

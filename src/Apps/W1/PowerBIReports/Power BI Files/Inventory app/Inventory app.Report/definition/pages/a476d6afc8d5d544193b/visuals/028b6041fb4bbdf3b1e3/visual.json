@@ -179,8 +179,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'[Temp Title] Sales Amount by Item'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Translated Localized Labels"
+                    }
+                  },
+                  "Property": "Sales Amount by Item Label"
                 }
               }
             }

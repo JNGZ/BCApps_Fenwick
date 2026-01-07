@@ -277,8 +277,13 @@
           "properties": {
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'[Temp Title] ABC Class Details'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Translated Localized Labels"
+                    }
+                  },
+                  "Property": "ABC Class Details Label"
                 }
               }
             },
