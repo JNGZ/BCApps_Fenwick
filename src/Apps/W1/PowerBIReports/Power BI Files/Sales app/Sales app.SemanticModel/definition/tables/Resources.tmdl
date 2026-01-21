@@ -69,16 +69,15 @@ table Resources
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "resources", Signature = "table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[resources],
 				    #"Renamed Columns" = Table.RenameColumns(TableData,{{"resourceNo", "Resource No."}, {"resourceName", "Resource Name"}, {"baseUnitofMeasure", "Resource Base Unit of Measure"}, {"unitCost", "Resource Unit Cost"}, {"unitPrice", "Resource Unit Price"}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"}),
-				    #"Added Resource No. and Name" = Table.AddColumn(#"Removed Columns", "Resource No. and Name", each [#"Resource No."] & " " & [Resource Name], type text),
+				    #"Added Resource No. and Name" = Table.AddColumn(#"Renamed Columns", "Resource No. and Name", each [#"Resource No."] & " " & [Resource Name], type text),
 				    #"Added Type Key" = Table.AddColumn(#"Added Resource No. and Name", "Type Key", each "Resource" & " " & [#"Resource No."], type text)
 				in
 				    #"Added Type Key"
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

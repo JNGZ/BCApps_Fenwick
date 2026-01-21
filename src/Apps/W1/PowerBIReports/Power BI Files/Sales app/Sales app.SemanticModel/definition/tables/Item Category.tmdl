@@ -134,12 +134,12 @@ table 'Item Category'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="itemCategories",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[itemCategories],
 				    #"Replaced Value" = Table.ReplaceValue(TableData,"itemCategories", each _[code],Replacer.ReplaceValue,{"parentCategory"}),
 				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","",null,Replacer.ReplaceValue,{"parentCategory"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value1",{{"code", "Item Category Code"}, {"description", "Item Category Description"}, {"parentCategory", "Item Category Parent Category"}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"systemId", "ETag"})
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"systemId"})
 				in
 				    #"Removed Columns"
 

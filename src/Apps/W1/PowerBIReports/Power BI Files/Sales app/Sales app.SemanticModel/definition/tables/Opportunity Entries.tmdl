@@ -315,15 +315,14 @@ table 'Opportunity Entries'
 		queryGroup: 'Fact Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY",#"API_ENDPOINT", []),
-				    TableData = Source{[Name="opportunityEntries",Signature="table"]}[Data],
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[opportunityEntries],
 				    #"Divided Completed" = Table.TransformColumns(TableData, {{"opportunityEntryCompleted", each _ / 100, type number}}),
 				    #"Divided Chance Success" = Table.TransformColumns(#"Divided Completed", {{"opportunityEntryChanceSuccess", each _ / 100, type number}}),
 				    #"Divided Probability" = Table.TransformColumns(#"Divided Chance Success", {{"opportunityEntryProbability", each _ / 100, type number}}),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Divided Probability",{{"opportunityEntryOpportunity", type text}, {"opportunityEntryEntryNo", type text}, {"opportunityEntryActive", type logical}, {"opportunityEntryActionTaken", type text}, {"opportunityEntrySalesCycleCode", type text}, {"opportunityEntryDateChange", type date}, {"opportunityEntryEstCloseDate", type date}, {"opportunityEntryEstValue", Currency.Type}, {"opportunityEntryCalcCurrentValue", Currency.Type}, {"opportunityEntrySalesCycleStage", type text}, {"opportunityEntrySalesCycleStageDescription", type text}, {"opportunityEntryCompleted", Percentage.Type}, {"opportunityEntryChanceSuccess", Percentage.Type}, {"opportunityEntryProbability", Percentage.Type}, {"opportunityContactNo", type text}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"ETag"}),
 				    #"Renamed Columns" = Table.RenameColumns(
-				        #"Removed Columns",
+				        #"Changed Type",
 				        {
 				            {"opportunityEntryOpportunity", "Opportunity No."},
 				            {"opportunityEntryEntryNo", "Opportunity Entry No."},

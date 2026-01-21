@@ -57,10 +57,10 @@ table 'G/L Accounts'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "generalLedgerAccounts", Signature = "table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[generalLedgerAccounts],
 				    #"Renamed Columns" = Table.RenameColumns(TableData,{{"accountNo", "G/L Account No."}, {"accountName", "G/L Account Name"}, {"accountType", "G/L Account Type"}, {"incomeBalance", "G/L Account Income/Balance"}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"accountSubcategoryEntryNo", "indentation", "totaling", "ETag"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"accountSubcategoryEntryNo", "indentation", "totaling"}),
 				    #"Added GL Account No. and Name" = Table.AddColumn(#"Removed Columns", "G/L Account No. and Name", each [#"G/L Account No."] & " " & [#"G/L Account Name"], type text),
 				    #"Added Type Key" = Table.AddColumn(#"Added GL Account No. and Name", "Type Key", each "G/L Account" & " " & [#"G/L Account No."], type text)
 				in
@@ -68,5 +68,5 @@ table 'G/L Accounts'
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

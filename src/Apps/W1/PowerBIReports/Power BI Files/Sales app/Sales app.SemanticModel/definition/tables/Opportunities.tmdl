@@ -125,8 +125,8 @@ table Opportunities
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY",#"API_ENDPOINT", []),
-				    TableData = Source{[Name="opportunities",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[opportunities],
 				    #"Changed Type" = Table.TransformColumnTypes(TableData,
 				        {
 				            {"opportunityNo", type text},
@@ -138,9 +138,8 @@ table Opportunities
 				            {"opportunitySalesDocumentType", type text}
 				        }
 				),
-				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"ETag"}),
 				    #"Reordered Columns" = Table.ReorderColumns(
-				        #"Removed Columns",
+				        #"Changed Type",
 				        {
 				            "opportunityNo",
 				            "opportunityCreationDate",

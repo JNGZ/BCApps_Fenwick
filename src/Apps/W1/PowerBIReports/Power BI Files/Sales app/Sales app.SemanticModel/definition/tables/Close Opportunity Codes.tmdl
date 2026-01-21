@@ -30,15 +30,14 @@ table 'Close Opportunity Codes'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY",#"API_ENDPOINT", []),
-				    TableData = Source{[Name="closeOpportunityCodes",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[closeOpportunityCodes],
 				    #"Renamed Columns" = Table.RenameColumns(
 				        TableData,
 				        {{"closeOpportunityCode", "Close Opportunity Code"}, {"closeOpportunityType", "Close Opportunity Type"}, {"closeOpportunityDescription", "Close Opportunity Description"}}
-				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"})
+				    )
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_NavigationStepName = Navigation
 

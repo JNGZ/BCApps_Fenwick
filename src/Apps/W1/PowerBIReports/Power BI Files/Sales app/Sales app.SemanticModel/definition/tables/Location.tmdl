@@ -34,15 +34,14 @@ table Location
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="locations",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[locations],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData, {{"locationCode", type text}, {"locationName", type text}}
 				    ),
-				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"locationCode", "Location Code"}, {"locationName", "Location Name"}, {"adjustmentBinCode", "Location Adjustment Bin Code"}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"})
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"locationCode", "Location Code"}, {"locationName", "Location Name"}, {"adjustmentBinCode", "Location Adjustment Bin Code"}})
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

@@ -296,13 +296,12 @@ table 'Date Table Setup'
 		queryGroup: 'Date Table'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "dateSetups", Signature = "table"]}[Data],
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[dateSetups],
 				    CheckTenantIDColumnExists = if Table.HasColumns(TableData, "tenantID") then TableData else Table.AddColumn(TableData, "tenantID", each null, type text),
 				    #"Convert UTC to Local" = ConvertUTC(CheckTenantIDColumnExists),
-				    #"Removed Columns" = Table.RemoveColumns(#"Convert UTC to Local", {"ETag"}),
 				    #"Added Conditional Column" = Table.AddColumn(
-				        #"Removed Columns",
+				        #"Convert UTC to Local",
 				        "First Day of Week",
 				        each
 				            if [firstDayOfWeek] = "Sunday" then

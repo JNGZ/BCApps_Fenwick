@@ -22,13 +22,13 @@ table 'Sales Budget Name'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="itemBudgets",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[itemBudgets],
 				    #"Filtered Rows" = Table.SelectRows(TableData, each ([analysisArea] = "Sales")),
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        #"Filtered Rows", {{"budgetName", type text}, {"budgetDescription", type text}}
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"analysisArea", "ETag"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"analysisArea"}),
 				    #"Renamed Columns" = Table.RenameColumns(
 				        #"Removed Columns", {{"budgetName", "Sales Budget Name"}, {"budgetDescription", "Sales Budget Description"}}
 				    )

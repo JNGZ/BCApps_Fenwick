@@ -22,18 +22,17 @@ table 'Reason Codes'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="returnReasonCodes",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[returnReasonCodes],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData, {{"reasonCode", type text}, {"reasonDescription", type text}}
 				    ),
 				    #"Renamed Columns" = Table.RenameColumns(
 				        #"Changed Type",
 				        {{"reasonCode", "Return Reason Code"}, {"reasonDescription", "Return Reason Description"}}
-				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"})
+				    )
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_NavigationStepName = Navigation
 

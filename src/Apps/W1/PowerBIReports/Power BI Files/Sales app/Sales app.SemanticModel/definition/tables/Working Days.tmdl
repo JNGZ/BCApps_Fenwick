@@ -24,12 +24,11 @@ table 'Working Days'
 		queryGroup: 'Date Table'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="workingDays",Signature="table"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(TableData, {{"dayNumber", "FSG_PBI_Day_Number"}}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"})
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[workingDays],
+				    #"Renamed Columns" = Table.RenameColumns(TableData, {{"dayNumber", "FSG_PBI_Day_Number"}})
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	changedProperty = IsHidden
 

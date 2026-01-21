@@ -1,7 +1,8 @@
 expression Dimensions =
 		let
-		    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-		    TableData = Source{[Name="dimensions",Signature="table"]}[Data],
+		    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+			TableData = Source[dimensions],
+		
 		    #"Changed Type" = Table.TransformColumnTypes(
 		        TableData,
 		        {
@@ -30,10 +31,9 @@ expression Dimensions =
 		            {"dim8Name", type text},
 		            {"dim8Caption", type text}
 		        }
-		    ),
-		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"ETag"})
+		    )
 		in
-		    #"Removed Columns"
+		    #"Changed Type"
 	lineageTag: 73c748a0-f1bb-4682-a85f-a88eb985c159
 
 	annotation PBI_ResultType = Table
@@ -54,8 +54,8 @@ expression DimensionSet_Blank =
 
 expression DimensionSets_DataSource =
 		let
-		    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-		    TableData = Source{[Name="dimensionSetEntries",Signature="table"]}[Data],
+		    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+			TableData = Source[dimensionSetEntries],
 		    #"Changed Type" = Table.TransformColumnTypes(
 		        TableData,
 		        {
@@ -79,8 +79,7 @@ expression DimensionSets_DataSource =
 		            {"dimension8ValueName", type text}
 		        }
 		    ),
-		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"ETag"}),
-		    #"Appended Query" = Table.Combine({#"Removed Columns", DimensionSet_Blank}),
+		    #"Appended Query" = Table.Combine({#"Changed Type", DimensionSet_Blank}),
 		    #"Filtered Rows" = Table.SelectRows(#"Appended Query", each ([dimensionSetID] <> 0))
 		in
 		    #"Filtered Rows"
@@ -343,9 +342,9 @@ expression InvertSignsGeneralLedgerEntries =
 
 expression 'Sales Credit Project Ledger Entries' =
 		let
-		    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-		    salesCrProjectLedgerEntries_table = Source{[Name="salesCrProjectLedgerEntries",Signature="table"]}[Data],
-		    #"Added Custom" = Table.AddColumn(salesCrProjectLedgerEntries_table, "Document Type", each "Posted Sales CR/Adj Note", type text),
+		    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+			TableData = Source[salesCrProjectLedgerEntries],
+		    #"Added Custom" = Table.AddColumn(TableData, "Document Type", each "Posted Sales CR/Adj Note", type text),
 		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Source Table", each "Project Ledger Entry", type text),
 		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"documentNo", "Document No."}})
 		in
@@ -359,9 +358,9 @@ expression 'Sales Credit Project Ledger Entries' =
 
 expression 'Sales Invoice Project Ledger Entries' =
 		let
-		    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-		    salesInvoiceProjectLedgerEntries_table = Source{[Name="salesInvoiceProjectLedgerEntries",Signature="table"]}[Data],
-		    #"Added Custom" = Table.AddColumn(salesInvoiceProjectLedgerEntries_table, "Document Type", each "Posted Sales Invoice", type text),
+			Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+			TableData = Source[salesInvoiceProjectLedgerEntries],
+		    #"Added Custom" = Table.AddColumn(TableData, "Document Type", each "Posted Sales Invoice", type text),
 		    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Source Table", each "Project Ledger Entry", type text),
 		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"documentNo", "Document No."}})
 		in

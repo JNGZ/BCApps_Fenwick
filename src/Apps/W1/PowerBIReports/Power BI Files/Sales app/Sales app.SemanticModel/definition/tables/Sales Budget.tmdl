@@ -176,8 +176,8 @@ table 'Sales Budget'
 		queryGroup: 'Fact Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="salesItemBudgetEntries",Signature="table"]}[Data],
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesItemBudgetEntries],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -193,7 +193,7 @@ table 'Sales Budget'
 				    #"Added Customer No." = Table.AddColumn(
 				        #"Changed Type", "Customer No.", each if [sourceType] = "Customer" then [sourceNo] else "", type text
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Added Customer No.", {"sourceType", "sourceNo","ETag"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Customer No.", {"sourceType", "sourceNo"}),
 				    #"Reordered Columns" = Table.ReorderColumns(
 				        #"Removed Columns",
 				        {

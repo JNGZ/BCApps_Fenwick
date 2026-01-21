@@ -295,17 +295,6 @@ table 'Project Ledger Entries'
 
 		annotation SummarizationSetBy = Automatic
 
-	column ETag
-		dataType: string
-		isHidden
-		lineageTag: 494c982a-421c-41fc-b3de-5a889ec4099c
-		summarizeBy: none
-		sourceColumn: ETag
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Document Type'
 		dataType: string
 		isHidden

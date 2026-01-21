@@ -295,8 +295,8 @@ table Item
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "items", Signature = "table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[items],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -339,12 +339,11 @@ table Item
 				    #"Added Custom" = Table.AddColumn(
 				        #"Renamed Columns", "Item No. & Description", each [#"Item No."] & " " & [Item Description], type text
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom", {"ETag"}),
-				    #"Added Type Key" = Table.AddColumn(#"Removed Columns", "Type Key", each "Item" & " " & [#"Item No."], type text)
+				    #"Added Type Key" = Table.AddColumn(#"Added Custom", "Type Key", each "Item" & " " & [#"Item No."], type text)
 				in
 				    #"Added Type Key"
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 
 	annotation PBI_NavigationStepName = Navigation
 

@@ -1,0 +1,18 @@
+table BCDEV2_API
+	lineageTag: 52b8d3bd-5264-4479-af52-26d58ca2a761
+
+	column BCDEV2_API
+		dataType: string
+		lineageTag: c1d17cdb-801b-471f-9367-e95de6e4bf9b
+		summarizeBy: none
+		sourceColumn: BCDEV2_API
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BCDEV2_API = m
+		mode: import
+		queryGroup: 'Parameters and Functions'
+		source = "http://bcdev2.fenwicksoftware.com.au:10328/BC/api/microsoft/analytics/v1.0/companies(f97295f2-2cd6-f011-85c2-e771bceb8a30)/" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+	annotation PBI_ResultType = Text
+

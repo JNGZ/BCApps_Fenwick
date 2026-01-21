@@ -108,8 +108,8 @@ table Contacts
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "contacts", Signature = "table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[contacts],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -143,10 +143,9 @@ table Contacts
 				    ),
 				    #"Added Custom" = Table.AddColumn(
 				        #"Renamed Columns", "Contact No. & Name", each [#"Contact No."] & " " & [Contact Name], type text
-				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom", {"ETag"})
+				    )
 				in
-				    #"Removed Columns"
+				    #"Added Custom"
 
 	annotation PBI_NavigationStepName = Navigation
 

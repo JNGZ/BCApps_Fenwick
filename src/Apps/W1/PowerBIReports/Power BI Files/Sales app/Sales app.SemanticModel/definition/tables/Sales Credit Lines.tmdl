@@ -254,17 +254,6 @@ table 'Sales Credit Lines'
 
 		annotation SummarizationSetBy = Automatic
 
-	column ETag
-		dataType: string
-		isHidden
-		lineageTag: 1025c72d-0cc7-4a8f-9b68-00dee55a3d29
-		summarizeBy: none
-		sourceColumn: ETag
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Source Table'
 		dataType: string
 		isHidden
@@ -325,9 +314,9 @@ table 'Sales Credit Lines'
 		queryGroup: 'Fact Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY", #"API_ENDPOINT", []),
-				    salesInvoiceLines_table = Source{[Name="salesCreditLines",Signature="table"]}[Data],
-				    #"Added Custom" = Table.AddColumn(salesInvoiceLines_table, "Source Table", each "Sales Credit Line", type text),
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesCreditLines],
+				    #"Added Custom" = Table.AddColumn(TableData, "Source Table", each "Sales Credit Line", type text),
 				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Document Type", each "Posted Sales CR/Adj Note", type text),
 				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Sales Key", each [Document Type] & " " & [documentNo] & " " & [#"Source Table"], type text),
 				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom2",{{"documentNo", "Document No."}, {"description", "Description"}, {"lineNo", "Sales Credit Line No."}}),

@@ -41,15 +41,14 @@ table 'Sales Cycle Stages'
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY",#"API_ENDPOINT", []),
-				    TableData = Source{[Name="salesCycleStages",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesCycleStages],
 				    #"Changed Type" = Table.TransformColumnTypes(TableData,{{"salesCycleStage", type text}}),
 				    #"Renamed Columns" = Table.RenameColumns(
 				        #"Changed Type",
 				        {{"salesCycleCode", "Sales Cycle Code"}, {"salesCycleStage", "Sales Cycle Stage"}, {"salesCycleStageDescription", "Sales Cycle Stage Description"}}
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"}),
-				    #"Added Sales Cycle Key" = Table.AddColumn(#"Removed Columns", "Sales Cycle Key", each [Sales Cycle Code]&[Sales Cycle Stage], type text)
+				    #"Added Sales Cycle Key" = Table.AddColumn(#"Renamed Columns", "Sales Cycle Key", each [Sales Cycle Code]&[Sales Cycle Stage], type text)
 				in
 				    #"Added Sales Cycle Key"
 

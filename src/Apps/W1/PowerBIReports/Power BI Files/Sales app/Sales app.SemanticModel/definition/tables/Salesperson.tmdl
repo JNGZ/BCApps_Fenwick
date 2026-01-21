@@ -23,18 +23,17 @@ table Salesperson
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="salespersonPurchasers",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salespersonPurchasers],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData, {{"salespersonPurchaserCode", type text}, {"salespersonPurchaserName", type text}}
 				    ),
 				    #"Renamed Columns" = Table.RenameColumns(
 				        #"Changed Type",
 				        {{"salespersonPurchaserCode", "Salesperson Code"}, {"salespersonPurchaserName", "Salesperson Name"}}
-				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"ETag"})
+				    )
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

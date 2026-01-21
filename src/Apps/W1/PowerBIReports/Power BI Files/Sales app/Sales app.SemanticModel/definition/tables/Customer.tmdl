@@ -1083,10 +1083,10 @@ table Customer
 	partition Customer-6b492668-52df-4b9d-b3b8-65a63247bc80 = m
 		mode: import
 		queryGroup: 'Dimension Tables'
-		source =
+		source = ```
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY,API_ENDPOINT, []),
-				    TableData = Source{[Name="customers",Signature="table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[customers],    
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -1103,10 +1103,10 @@ table Customer
 				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"customerNo", "Customer No."}, {"customerName", "Customer Name"}, {"address2", "Customer Address 2"}, {"postCode", "Customer Post Code"}, {"countryRegionCode", "Customer Country/Region Code"}, {"address", "Customer Address"}, {"city", "Customer City"}, {"county", "Customer County"}, {"customerPostingGroup", "Customer Posting Group"}, {"customerPriceGroup", "Customer Price Group"}, {"customerDiscGroup", "Customer Discount Group"}}),
 				    #"Added Custom" = Table.AddColumn(
 				        #"Renamed Columns", "Customer No. & Name", each [#"Customer No."] & " " & [Customer Name], type text
-				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"ETag"})
+				    )
 				in
-				    #"Removed Columns"
+				    #"Added Custom"
+				```
 
 	annotation PBI_ResultType = Table
 

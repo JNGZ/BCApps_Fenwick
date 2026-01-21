@@ -776,8 +776,8 @@ table 'Sales Lines'
 		queryGroup: 'Fact Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT , []),
-				    TableData = Source{[Name = "salesLines", Signature = "table"]}[Data],
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesLines],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -799,7 +799,6 @@ table 'Sales Lines'
 				    #"Removed Columns" = Table.RemoveColumns(
 				        #"Added Table Name",
 				        {
-				            "ETag",
 				            "salesLineDocumentType"
 				        }
 				    ),

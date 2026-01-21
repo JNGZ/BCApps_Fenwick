@@ -376,8 +376,8 @@ table 'Sales Value Entries'
 		queryGroup: 'Fact Tables'
 		source = ```
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(ENVIRONMENT, COMPANY, API_ENDPOINT, []),
-				    TableData = Source{[Name = "salesValueEntries", Signature = "table"]}[Data],
+					Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesValueEntries],
 				    #"Changed Type" = Table.TransformColumnTypes(
 				        TableData,
 				        {
@@ -403,7 +403,7 @@ table 'Sales Value Entries'
 				            {"itemLedgerEntryType", "Item Ledger Entry Type"}
 				        }
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"documentType", "ETag"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"documentType"}),
 				    #"Added Sales Key" = Table.AddColumn(
 				        #"Removed Columns", "Sales Key", each [Document Type] & " " & [#"Document No."] & " " & [#"Source Table"], type text 
 				    ),

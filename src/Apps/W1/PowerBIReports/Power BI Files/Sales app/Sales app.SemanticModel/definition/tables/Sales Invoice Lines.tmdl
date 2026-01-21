@@ -232,15 +232,6 @@ table 'Sales Invoice Lines'
 
 		annotation SummarizationSetBy = Automatic
 
-	column ETag
-		dataType: string
-		isHidden
-		lineageTag: 9e3f53cf-1838-48d2-a646-845147f4dee3
-		summarizeBy: none
-		sourceColumn: ETag
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Source Table'
 		dataType: string
 		isHidden
@@ -293,9 +284,9 @@ table 'Sales Invoice Lines'
 		queryGroup: 'Fact Tables'
 		source =
 				let
-				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(#"ENVIRONMENT", #"COMPANY", #"API_ENDPOINT", []),
-				    salesInvoiceLines_table = Source{[Name="salesInvoiceLines",Signature="table"]}[Data],
-				    #"Added Custom" = Table.AddColumn(salesInvoiceLines_table, "Source Table", each "Sales Invoice Line", type text),
+				    Source = OData.Feed(#"BCDEV2_API", null, [Implementation="2.0"]),
+					TableData = Source[salesInvoiceLines],
+				    #"Added Custom" = Table.AddColumn(TableData, "Source Table", each "Sales Invoice Line", type text),
 				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Document Type", each "Posted Sales Invoice", type text),
 				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Sales Key", each [Document Type] & " " & [documentNo] & " " & [#"Source Table"], type text),
 				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom2",{{"documentNo", "Document No."}, {"description", "Description"}, {"lineNo", "Sales Invoice Line No."}}),
