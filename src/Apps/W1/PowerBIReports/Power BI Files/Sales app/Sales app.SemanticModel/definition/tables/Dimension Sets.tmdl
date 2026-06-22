@@ -169,41 +169,101 @@ table 'Dimension Sets'
 
 		annotation SummarizationSetBy = Automatic
 
+	column DEPARTMENT
+		dataType: string
+		lineageTag: 6e91fe8f-8678-4e9c-93a3-4da389390816
+		summarizeBy: none
+		sourceColumn: DEPARTMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Department Name'
+		dataType: string
+		lineageTag: e7764967-374b-43f2-b260-e4ea324ea885
+		summarizeBy: none
+		sourceColumn: Department Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERGROUP
+		dataType: string
+		lineageTag: bfe2c9c8-4003-4337-92ed-89a8e9259c25
+		summarizeBy: none
+		sourceColumn: CUSTOMERGROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group Name'
+		dataType: string
+		lineageTag: 928669c3-fa51-44d2-a8c2-ee836ede4fcf
+		summarizeBy: none
+		sourceColumn: Customer Group Name
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Dimension Sets-e7ba2870-18e9-4ca6-9009-998bf464059c' = m
 		mode: import
 		queryGroup: 'Dimension Tables'
 		source =
 				let
-				    Source = DimensionSets_DataSource,
-				    #"Changed Type" = Table.TransformColumnTypes(
-				        Source,
-				        {
-				            {"dimensionSetID", Int64.Type},
-				            {"dimension1ValueCode", type text},
-				            {"dimension2ValueCode", type text},
-				            {"dimension3ValueCode", type text},
-				            {"dimension4ValueCode", type text},
-				            {"dimension5ValueCode", type text},
-				            {"dimension6ValueCode", type text},
-				            {"dimension7ValueCode", type text},
-				            {"dimension8ValueCode", type text}
-				        }
-				    ),
-				    #"Renamed Columns" = Table.RenameColumns(
-				        #"Changed Type",
-				        {
-				            {"dimension1ValueCode", "Global Dimension 1"},
-				            {"dimension2ValueCode", "Global Dimension 2"},
-				            {"dimension3ValueCode", "Shortcut Dimension 3"},
-				            {"dimension4ValueCode", "Shortcut Dimension 4"},
-				            {"dimension5ValueCode", "Shortcut Dimension 5"},
-				            {"dimension6ValueCode", "Shortcut Dimension 6"},
-				            {"dimension7ValueCode", "Shortcut Dimension 7"},
-				            {"dimension8ValueCode", "Shortcut Dimension 8"}
-				        }
-				    )
+					Source = DimensionSets_DataSource,
+					#"Changed Type" = Table.TransformColumnTypes(
+						Source,
+						{
+							{"dimensionSetID", Int64.Type},
+							{"dimension1ValueCode", type text},
+							{"dimension2ValueCode", type text},
+							{"dimension3ValueCode", type text},
+							{"dimension4ValueCode", type text},
+							{"dimension5ValueCode", type text},
+							{"dimension6ValueCode", type text},
+							{"dimension7ValueCode", type text},
+							{"dimension8ValueCode", type text}
+						}
+					),
+					#"Renamed Columns" = Table.RenameColumns(
+						#"Changed Type",
+						{
+							{"dimension1ValueCode", "Global Dimension 1"},
+							{"dimension2ValueCode", "Global Dimension 2"},
+							{"dimension3ValueCode", "Shortcut Dimension 3"},
+							{"dimension4ValueCode", "Shortcut Dimension 4"},
+							{"dimension5ValueCode", "Shortcut Dimension 5"},
+							{"dimension6ValueCode", "Shortcut Dimension 6"},
+							{"dimension7ValueCode", "Shortcut Dimension 7"},
+							{"dimension8ValueCode", "Shortcut Dimension 8"}
+						}
+					),
+					// Example: Get the first (and only) row from the mapping table
+					#"Mapping Row" = Record.ToList(Record.SelectFields(Dimensions{0}, {"dim1Code", "dim1Name", "dim2Code", "dim2Name", "dim3Code", "dim3Name", "dim4Code", "dim4Name", "dim5Code", "dim5Name", "dim6Code", "dim6Name", "dim7Code", "dim7Name", "dim8Code", "dim8Name"})),
+					// List of original column names in Flattened Dimensions
+					#"Original Names" = {"Global Dimension 1", "dimension1ValueName", "Global Dimension 2", "dimension2ValueName", "Shortcut Dimension 3", "dimension3ValueName", "Shortcut Dimension 4", "dimension4ValueName", "Shortcut Dimension 5", "dimension5ValueName", "Shortcut Dimension 6", "dimension6ValueName", "Shortcut Dimension 7", "dimension7ValueName", "Shortcut Dimension 8", "dimension8ValueName"},
+					// Add suffix based on position: even index = ' Code', odd index = ' Name'
+					#"Mapping With Suffix" = List.Transform(
+						List.Zip({#"Mapping Row", List.Transform({0..15}, each if Number.Mod(_, 2) = 0 then "" else " Name")}),
+						each if _{0} <> null and Text.Trim(Text.From(_{0})) <> "" then Text.From(_{0}) & _{1} else null
+					),
+					// Create list of {oldName, newName} pairs
+					#"Rename Pairs" = List.Zip({#"Original Names", #"Mapping With Suffix"}),
+					// Filter out pairs where the new name is null or empty
+					#"Filter Pairs" = List.Select(#"Rename Pairs", each _{1} <> null and Text.Trim(Text.From(_{1})) <> ""),
+					// Get the list of columns to keep: "Dimension Set ID" plus all old names with a valid new name
+					#"Columns To Keep" = List.Combine({{"dimensionSetID"}, List.Transform(#"Filter Pairs", each _{0})}),
+					// Remove columns not in the keep list
+					#"Removed Unmapped Columns" = Table.SelectColumns(#"Renamed Columns", #"Columns To Keep"),
+					// Add new columns with mapped names instead of renaming
+					#"Added Mapped Columns" = List.Accumulate(
+						#"Filter Pairs",
+						#"Renamed Columns",
+						(state, pair) => Table.AddColumn(
+							state, pair{1},
+							// new column name
+							each Record.Field(_, pair{0})
+							// value from old column
+						)
+					)
 				in
-				    #"Renamed Columns"
+					#"Added Mapped Columns"
 
 	annotation PBI_ResultType = Table
 
